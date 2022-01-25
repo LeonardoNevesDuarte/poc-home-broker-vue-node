@@ -78,7 +78,7 @@ var server = http.createServer(function (request, response) {
 
         //checking for identified HTML
         if (filename.substr(filename.lastIndexOf('.') + 1) == 'html') {
-            fullPath = rootFolder + '/html/' + filename;
+            fullPath = rootFolder + filename;
         } else {
             fullPath = rootFolder + filename;
         }
