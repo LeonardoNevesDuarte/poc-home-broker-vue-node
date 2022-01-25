@@ -17,7 +17,7 @@ var server = http.createServer(function (request, response) {
     console.log((new Date()) + ' Received request for ' + request.url);
     var filename = parse(request.url).pathname, fullPath, extension;
     //checking for API access
-    if (filename.substring(0,5) === '/api/') {
+    if (filename.substring(0, 5) === '/api/' || filename.substring(0, 5) === 'api/') {
 
         var apiRef = filename.substring(filename.lastIndexOf('/')+1,filename.length);
         console.log((new Date()) + ' Received request for API ' + apiRef);
