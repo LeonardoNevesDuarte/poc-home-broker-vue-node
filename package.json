@@ -1,0 +1,25 @@
+{
+  "name": "poc-home-broker-vue-node",
+  "version": "1.0.0",
+  "description": "Home Broker - POC with Vue.js and Node.js",
+  "main": "node-app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeonardoNevesDuarte/poc-home-broker-vue-node.git"
+  },
+  "keywords": [
+    "vue.js",
+    "node.js",
+    "bootstrap",
+    "websocket"
+  ],
+  "author": "Leonardo Neves Duarte",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LeonardoNevesDuarte/poc-home-broker-vue-node/issues"
+  },
+  "homepage": "https://github.com/LeonardoNevesDuarte/poc-home-broker-vue-node#readme"
+}
