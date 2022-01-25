@@ -59,7 +59,7 @@
                                             </tr>
                                         </table>
                                         <div class-="text-center" style="margin-top: 0px; margin-bottom: 2px; padding:0;">
-                                            <button class="btn btn-light btn-sm fSize9 bold"><i class="bi bi-bar-chart"></i>&nbsp;&nbsp;Current Quotation</button>&nbsp;<button class="btn btn-light btn-sm fSize9"><i class="bi bi-file-text"></i>&nbsp;&nbsp;Transactions</button>
+                                            <button class="btn btn-light btn-sm fSize9" v-bind:class="{'bold': myStocksUserView[stock.ticker] == 0}" v-on:click="doToogleStockUserView(stock.ticker,0)"><i class="bi bi-bar-chart"></i>&nbsp;&nbsp;Current Quotation</button>&nbsp;<button class="btn btn-light btn-sm fSize9" v-bind:class="{'bold': myStocksUserView[stock.ticker] == 1}" v-on:click="doToogleStockUserView(stock.ticker,1)"><i class="bi bi-file-text"></i>&nbsp;&nbsp;Transactions</button>
                                         </div>
                                         <table v-if="myStocksUserView[stock.ticker] == 0" class="table table-striped" style="line-height: 16px; margin-bottom: 2px;">
                                             <tr>
@@ -82,11 +82,18 @@
                                         <table v-if="myStocksUserView[stock.ticker] == 1" class="table table-striped"
                                             style="line-height: 16px; margin-bottom: 2px;">
                                             <tr>
-                                                <td class="text-start fSize14">Date</td>
-                                                <td class="text-end fSize14">Qty</td>
-                                                <td class="text-end fSize14">Price</td>
+                                                <td class="text-start fSize14" width="40%">Date</td>
+                                                <td class="text-end fSize14" width="30%">Qty</td>
+                                                <td class="text-end fSize14" width="30%">Price</td>
                                             </tr>
-                                           
+                                            <tr v-for="stockTransaction in myStocksTransactions[stock.ticker]">
+                                                <td class="text-start fSize9" width="46%">{{stockTransaction.date}}</td>
+                                                <td class="text-end fSize12" width="24%">{{stockTransaction.qty}}</td>
+                                                <td class="text-end fSize12" width="30%">{{stockTransaction.price}}</td>
+                                            </tr>
+                                            <tr v-if="myStocksTransactions[stock.ticker] == null">
+                                                <td class="text-start fSize12" colspan="3">No transactions recorded</td>
+                                            </tr>
                                         </table>
                                     </div>
                                 </div>
@@ -201,6 +208,7 @@
     <script src="lib-js/userAuthenticationService.js"></script>
     <script src="lib-js/commonOperationsService.js"></script>
     <script src="lib-js/wfUtil.js"></script>
+    <script src="lib-js/moment-with-locales.js"></script>
 
     <!-- Load custom javascript code for this page -->
     <script src="html/index.js"></script>
@@ -228,7 +236,8 @@
                         clockFormated: ""
                     },
                     myStocks: {},
-                    myStocksUserView: {}
+                    myStocksUserView: {},
+                    myStocksTransactions: {}
                 }
             },
             methods:{
@@ -253,7 +262,7 @@
                     }
                 },
                 doCalculatePacketRatio() {
-                    console.log(Date.now());
+                    //console.log(Date.now());
                     this.packetRatio = parseFloat(this.packetsQty/(Date.now() - this.tmstpConnStart)).toFixed(2);
                 },
                 doUpdateConnStatus(varStatus) {
@@ -283,19 +292,40 @@
                         }
                         this.packetsQty++;
                         this.doCalculatePacketRatio();
+
+                        moment.locale();
+                        var transaction = {
+                            date: moment().format('L') + " " + moment().format('LTS'),
+                            qty: (Math.floor(Math.random() * 10) + 1)*100,
+                            price: varValue
+                        };
+
+                        if (this.myStocksTransactions[varTicker] != null) {
+                            var transactions = this.myStocksTransactions[varTicker];
+                            if(transactions.length < 5) {
+                                transactions.push(transaction);
+                            } else {
+                                transactions.shift();
+                                transactions.push(transaction);
+                            }
+                        } else {
+                            var transactions = [];
+                            transactions.push(transaction);
+                        }
+                        this.myStocksTransactions[varTicker] = transactions;
+
+                        transaction = null;
+                        transactions = null;
                     }
                 },
                 doInitializeListofStocks(varListofStocks) {
                     this.myStocks = varListofStocks;
-                    
-                    console.log(varListofStocks);
-                    for (var [key] of varListofStocks) {
-
-                        //listOfStocks.push(`${key}`);
-                       console.log(`${key}`);
-                        //this.myStocksUserView[`${key}`] = 0;
+                    for (const [key, value] of Object.entries(varListofStocks)) {
+                        this.myStocksUserView[`${key}`] = 0;
                     }
-
+                },
+                doToogleStockUserView(varStock, varValue) {
+                    this.myStocksUserView[varStock] = varValue;
                 }
             }
             
