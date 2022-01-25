@@ -8,7 +8,7 @@ function gblAuthenticateUserService(varEmail, varPassword, callbackFunction) {
             { param_name: "email", param_value: varEmail, param_type: "header" },
             { param_name: "password", param_value: varPassword, param_type: "header" }
         ];
-        gblDoHTTPRequest(httpHandle, 'httpHandle', params, "/api/doLogin", "", callbackFunction);       
+        gblDoHTTPRequest(httpHandle, 'httpHandle', params, "api/doLogin", "", callbackFunction);       
     } catch (e) {
         console.log(e);
     }
