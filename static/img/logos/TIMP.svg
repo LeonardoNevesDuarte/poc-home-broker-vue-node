@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600px" height="250px" viewBox="0 0 600 250" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.1 (55044) - http://www.bohemiancoding.com/sketch -->
+    <title>TIMP</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="TIMP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Grid-Logo" opacity="0.400000006" transform="translate(1.000000, 0.000000)"></g>
+        <g id="TIMP3" transform="translate(135.000000, 83.000000)" fill-rule="nonzero">
+            <g id="Group" fill="#E20C20">
+                <rect id="Rectangle-path" x="0.117582418" y="0.535135135" width="106.823626" height="19.6810811"></rect>
+                <rect id="Rectangle-path" x="0.117582418" y="34.3081081" width="42.9763736" height="19.6810811"></rect>
+                <rect id="Rectangle-path" x="0.117582418" y="67.8432432" width="42.9763736" height="19.6810811"></rect>
+                <rect id="Rectangle-path" x="63.906044" y="34.3081081" width="42.9763736" height="19.6810811"></rect>
+                <rect id="Rectangle-path" x="63.906044" y="67.8432432" width="42.9763736" height="19.6810811"></rect>
+            </g>
+            <g id="Group" transform="translate(126.000000, 0.000000)" fill="#1C3E85">
+                <polyline id="Shape" points="0.471676301 0.535135135 69.6901734 0.535135135 69.6901734 20.1567568 43.3352601 20.1567568 43.3352601 87.4648649 26.5907514 87.4648649 26.5907514 20.1567568 0.471676301 20.1567568"></polyline>
+                <rect id="Rectangle-path" x="78.2393064" y="0.535135135" width="18.9260116" height="86.9891892"></rect>
+                <polygon id="Shape" points="117.624277 0.416216216 138.790751 0.416216216 160.782659 53.9297297 182.774566 0.594594595 203.882081 0.594594595 203.882081 87.5837838 188.257803 87.4054054 188.257803 26.6378378 168.683237 74.2054054 152.882081 74.2054054 133.307514 25.9243243 133.307514 87.4054054 117.624277 87.4054054"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

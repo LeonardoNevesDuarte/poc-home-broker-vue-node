@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Websocket POC with node.js">
+    <meta name="author" content="Leonardo Duarte">
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="img/favicon.ico">
+    <title>Let's meet</title>
+
+    <style media="screen">
+
+    </style>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="font/bootstrap-icons.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <!-- link href="css/notice.css" rel="stylesheet" -->
+    <!-- Load other JS Libraries -->
+    <!-- script src="lib-js/notice.min.js"></script -->
+
+    <!--script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/build/ol.js"></script-->
+  
+</head>
+
+<body>
+    <div id="vueApp">
+        <div v-if="blnSignedIn">
+            <nav class="navbar fixed-top navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#"><img src="img/generic-company-logo-inverted.png" width="200"></a>
+                    <button id="btnLogoff" onclick="funConfirmSignOut();" type="button" class="btn btn-secondary btn-sm"><i class="bi bi-door-closed"></i>&nbsp;&nbsp;Sign Out</button>
+                </div>
+            </nav>
+            <div class="container-fluid" style="margin-top: 90px;">
+                <div class="row">
+                    <div class="col-md-9">
+
+                        <div class="row"><!-- new row -->
+                            <div v-for="stock in myStocks" class="col-md-3">
+                                <div class="card" style="margin-bottom: 10px;">
+                                    <div class="card-header" style="padding: 2px 10px 2px 2px;">
+                                        <img v-bind:src="'img/logos/'+ stock.logo" width="100">
+                                        <div class="float-end bold" style="line-height: 42px;">{{stock.ticker}}</div>
+                                    </div>
+                                    <div class="card-body" style="padding: 5px;">
+                                        <table class="table" style="margin-bottom: 5px;">
+                                            <tr>
+                                                <td width="53%" class="text-end bold fSize28 align-middle">{{stock.current}}</td>
+                                                <td width="1%"></td>
+                                                <td width="46%" class="text-end bold fSize22 align-middle " v-bind:class="{ 'text-secondary': stock.variation == 0, 'text-success': stock.variation > 0, 'text-danger': stock.variation < 0 }"><i class="bi" v-bind:class="{ 'bi-caret-up-fill': stock.variation > 0, 'bi-caret-down-fill': stock.variation < 0 }"></i>&nbsp;<span v-if="stock.variation > 0">+</span>{{stock.variation}}%</td>
+                                            </tr>
+                                        </table>
+                                        <div class-="text-center" style="margin-top: 0px; margin-bottom: 2px; padding:0;">
+                                            <button class="btn btn-light btn-sm fSize9 bold"><i class="bi bi-bar-chart"></i>&nbsp;&nbsp;Current Quotation</button>&nbsp;<button class="btn btn-light btn-sm fSize9"><i class="bi bi-file-text"></i>&nbsp;&nbsp;Transactions</button>
+                                        </div>
+                                        <table v-if="myStocksUserView[stock.ticker] == 0" class="table table-striped" style="line-height: 16px; margin-bottom: 2px;">
+                                            <tr>
+                                                <td class="text-end fSize14">Previous Close:</td>
+                                                <td class="text-end bold fSize16">{{stock.close}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-end fSize14">Open:</td>
+                                                <td class="text-end bold fSize16"><span v-if="stock.open > 0">{{stock.open}}</span><span v-else>-</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-end fSize14">Min:</td>
+                                                <td class="text-end bold fSize16"><span v-if="stock.min > 0">{{stock.min}}</span><span v-else>-</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-end fSize14">Max:</td>
+                                                <td class="text-end bold fSize16"><span v-if="stock.max > 0">{{stock.max}}</span><span v-else>-</span></td>
+                                            </tr>
+                                        </table>
+                                        <table v-if="myStocksUserView[stock.ticker] == 1" class="table table-striped"
+                                            style="line-height: 16px; margin-bottom: 2px;">
+                                            <tr>
+                                                <td class="text-start fSize14">Date</td>
+                                                <td class="text-end fSize14">Qty</td>
+                                                <td class="text-end fSize14">Price</td>
+                                            </tr>
+                                           
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- end row -->
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-header"><i class="bi bi-person-circle"></i>&nbsp;&nbsp;User Info</div>
+                            <div class="card-body" style="padding: 10px;">
+                                <table class="table table-striped fSize14">
+                                    <tr>
+                                        <td class="bold">Username:</td>
+                                        <td>{{signedInUser.username}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Name:</td>
+                                        <td>{{signedInUser.fullname}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card" style="margin-top: 10px;">
+                            <div class="card-header"><i class="bi bi-cart2"></i>&nbsp;&nbsp;Market Info</div>
+                            <div class="card-body" style="padding: 10px;">
+                                <table class="table table-striped fSize14">
+                                    <tr>
+                                        <td class="bold" width="50%">Market Status:</td>
+                                        <td><span v-bind:class="{'text-danger': market.status == 'Closed', 'text-success': market.status == 'Opened', 'text-warning': market.status == 'Pre-Market' }">{{market.status}}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold" width="50%">{{market.clockRef}}:</td>
+                                        <td>{{market.clockFormated}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card" style="margin-top: 10px;">
+                            <div class="card-header"><i class="bi bi-activity"></i>&nbsp;&nbsp;Activity Monitor</div>
+                            <div class="card-body" style="padding: 10px;">
+        
+                                <table class="table table-striped fSize14">
+                                    <tr>
+                                        <td class="bold" width="50%">Status:</td>
+                                        <td><i class="text-secondary bi bi-broadcast"></i>&nbsp;&nbsp;<span v-bind:class="{ 'text-danger': connStatus == 0, 'text-success': connStatus == 1}"><span v-if="connStatus == 1">Connected</span><span v-else>Not Connected</span></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold" width="50%"># of Packets:</td>
+                                        <td>{{packetsQty}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold" width="50%">Packets Ratio:</td>
+                                        <td>{{packetRatio}} pckts/sec</td>
+                                    </tr>
+                                </table>
+                                <div class="float-end">
+                                    <button class="btn btn-primary btn-sm" onclick="connectWS()">Connect</button>&nbsp;
+                                    <button class="btn btn-primary btn-sm" onclick="startWS()">Start</button>
+                                </div>
+                                <button class="btn btn-danger btn-sm" onclick="closeWS()">Disconnect</button>&nbsp;
+                                <button class="btn btn-danger btn-sm" onclick="stopWS()">Stop</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div v-if="!blnSignedIn">
+            <!-- Splash and Sign In screen-->
+            <div style="position: fixed; left: 0; top: 0; background-color: black; width: 100%; height: 1000px; z-index: 9999;">
+                <div class="centered"
+                    style="position: relative; width: 16%; top: 20%; left: 42%; --border: 1px solid white; color: white;">
+                    <table width="100%">
+                        <tr>
+                            <td align="center"><img src="img/generic-company-logo-inverted.png" width="240"></td>
+                        </tr>
+                        <tr>
+                            <td align="left">
+                                <p class="fSize12 custMargT10">In order to Sign in, please provide your credentials.</p>
+                                <p class="fSize12 custMargT10">To run/view this demo, please use <strong>HB1</strong> or <strong>HB2</strong> in both Username and Password fields.</p>
+                                <form name="frmLogin" id="frmLogin">
+                                    <div class="mb-3">
+                                        <label for="txtEmail">E-mail or Usename:</label>
+                                        <input type="email" class="form-control" id="txtEmail" name="txtEmail" value="HB1" placeholder="E-mail or Username">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="txtPassword">Password:</label>
+                                        <input type="password" class="form-control" id="txtPassword" value="HB1" name="txtPassword" placeholder="Password">
+                                    </div>
+                                </form>
+                                <p id="lblMensagens" class="fSize12"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><button id="btnPnlSignIn" type="button" class="btn btn-primary" onclick="funConfirmSignIn();"><i class="bi bi-door-open"></i>&nbsp;&nbsp;Sign In</button></td>
+                        </tr>
+                    </table>
+            
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script -->
+    <!-- script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script -->
+    <script src="lib-js/bootstrap.bundle.js"></script>
+    <script src="lib-js/vue.global.js"></script>
+    <script src="lib-js/httpRequestservice.js"></script>
+    <script src="lib-js/userAuthenticationService.js"></script>
+    <script src="lib-js/commonOperationsService.js"></script>
+    <script src="lib-js/wfUtil.js"></script>
+
+    <!-- Load custom javascript code for this page -->
+    <script src="html/index.js"></script>
+
+
+    <script>
+        
+        const vueApp = Vue.createApp({
+            data() {
+                return {
+                    //List of valiables / data objects
+                    blnSignedIn: false,
+                    connStatus: false,
+                    packetsQty: 0,
+                    packetRatio: 0,
+                    tmstpConnStart: "",
+                    signedInUser: {
+                        username: "",
+                        fullname: ""
+                    },
+                    market: {
+                        status: "Closed",
+                        clockRef: "Time to Open",
+                        clock: 0,
+                        clockFormated: ""
+                    },
+                    myStocks: {},
+                    myStocksUserView: {}
+                }
+            },
+            methods:{
+                doUpdateConnStart() {
+                    this.tmstpConnStart = Date.now();
+                },
+                doUpdateMarketStatus(varStatus) {
+                    this.market.status = varStatus;
+                },
+                doUpdateMarketClock(varValue, varMode) {                
+                    if(varMode == "init") {
+                        this.market.clock = varValue/1000;
+                        this.market.clockFormated = new Date(this.market.clock * 1000).toISOString().substr(11, 8);
+                    } else {
+                        this.market.clock = this.market.clock - varValue;
+                        this.market.clockFormated = new Date(this.market.clock * 1000).toISOString().substr(11, 8);
+                    }
+                    if (this.market.clock == 0){
+                        this.market.clock = timeToClose/1000;
+                        this.market.clockFormated = new Date(this.market.clock * 1000).toISOString().substr(11, 8);
+                        this.market.clockRef = "Time to Close";
+                    }
+                },
+                doCalculatePacketRatio() {
+                    console.log(Date.now());
+                    this.packetRatio = parseFloat(this.packetsQty/(Date.now() - this.tmstpConnStart)).toFixed(2);
+                },
+                doUpdateConnStatus(varStatus) {
+                    this.connStatus = varStatus;
+                },
+                doUpdateSignInFlag(varFlag) {
+                    this.blnSignedIn = varFlag;
+                },
+                doUpdateSignInUserData(varUsername, varFullname) {
+                    this.signedInUser.username = varUsername;
+                    this.signedInUser.fullname = varFullname;
+                },
+                doUpdateCurrentQuote(varTicker, varValue) {
+                    if(this.myStocks[varTicker] != null) {
+
+                        var variation = ((varValue - this.myStocks[varTicker].close) / this.myStocks[varTicker].close) * 100;
+                        this.myStocks[varTicker].variation = parseFloat(variation).toFixed(2);
+                        this.myStocks[varTicker].current = parseFloat(varValue).toFixed(2);
+                        if (varValue < this.myStocks[varTicker].min || this.myStocks[varTicker].min == 0.00) {
+                            this.myStocks[varTicker].min = parseFloat(varValue).toFixed(2);
+                        }
+                        if (varValue > this.myStocks[varTicker].max) {
+                            this.myStocks[varTicker].max = parseFloat(varValue).toFixed(2);
+                        }
+                        if (this.myStocks[varTicker].open == 0.00) {
+                            this.myStocks[varTicker].open = parseFloat(varValue).toFixed(2);
+                        }
+                        this.packetsQty++;
+                        this.doCalculatePacketRatio();
+                    }
+                },
+                doInitializeListofStocks(varListofStocks) {
+                    this.myStocks = varListofStocks;
+                    
+                    console.log(varListofStocks);
+                    for (var [key] of varListofStocks) {
+
+                        //listOfStocks.push(`${key}`);
+                       console.log(`${key}`);
+                        //this.myStocksUserView[`${key}`] = 0;
+                    }
+
+                }
+            }
+            
+        })
+        const mountedApp = vueApp.mount('#vueApp')
+
+
+    </script>
+
+</body>
+
+</html>

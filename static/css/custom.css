@@ -1,0 +1,205 @@
+/* ########## Alignment Section ########## */
+.centered {
+    text-align: center !important;
+}
+.toRight {
+    text-align: right !important;
+}
+.toLeft {
+    text-align: left !important;
+}
+.toMiddle {
+    vertical-align: middle !important;
+}
+.toTop {
+    vertical-align: top !important;
+}
+.toBottom {
+    vertical-align: bottom !important;
+}
+.word-break{
+    white-space: -moz-pre-wrap; /* Mozilla */
+    white-space: -hp-pre-wrap; /* HP printers */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: pre-wrap; /* CSS 2.1 */
+    white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */
+    word-wrap: break-word; /* IE */
+    word-break: break-all;
+}
+.noWordBreak { 
+	white-space: nowrap;
+}
+/* ########## Font Size Section ########## */
+.fSize8 {
+	font-size: 8px;
+}
+.fSize9 {
+	font-size: 9px;
+}
+.fSize10 {
+	font-size: 10px;
+}
+.fSize11 {
+	font-size: 11px;
+}
+.fSize12 {
+	font-size: 12px;
+}
+.fSize13 {
+	font-size: 13px;
+}
+.fSize14 {
+	font-size: 14px;
+}
+.fSize15 {
+	font-size: 15px;
+}
+.fSize16 {
+	font-size: 16px;
+}
+.fSize17 {
+	font-size: 17px;
+}
+.fSize18 {
+	font-size: 18px;
+}
+.fSize19 {
+	font-size: 19px;
+}
+.fSize20 {
+	font-size: 20px;
+}
+.fSize24 {
+	font-size: 24px;
+}
+.fSize28 {
+	font-size: 28px;
+}
+.fSize26 {
+	font-size: 26px;
+}
+/* ########## Font format Section ########## */
+.bold { 
+	font-weight: bold;
+}
+/* ########## Avatar and Menu Sections ########## */
+.navbar-EJ {
+	padding-top: 12px;
+	--padding-bottom: 10px;
+}
+.menu-on {
+	color: #FFFFFF;
+}
+.avatar-cust {
+	margin-right: 10px;
+	margin-left: 10px;	
+	margin-bottom: -20px;
+	margin-top: -20px;
+	background-color: #FFFFFF;
+	border-radius: 16px;
+	width: 32px;
+}
+/* ########## Margins Section ########## */
+.custMargT0 {
+    margin-top: 0px;
+}
+.custMargT5 {
+    margin-top: 5px;
+}
+.custMargT10 {
+    margin-top: 10px;
+}
+.custMargT15 {
+    margin-top: 15px;
+}
+.custMargB0 {
+    margin-bottom: 0px;
+}
+.custMargB5 {
+    margin-bottom: 5px;
+}
+.custMargB10 {
+    margin-bottom: 10px;
+}
+
+/* ########## Paddings Section ########## */
+.custPadL10 {
+    padding-left: 10px;
+}
+.custPadR10 {
+    padding-right: 10px;
+}
+.custPadT0 {
+    padding-top: 0px;
+}
+/* ########## Columnns inside forms Section ########## */
+.formColSingle {
+    padding: 0px 0px 0px 0px;
+}
+.formCol {
+    padding-left: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+.formColLast {
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+/* ########## Screen Spacer Section ########## */
+.headSpacer {
+    padding-top: 40px;
+}
+/* ########## Mouse Pointer Section ########## */
+.pointer { 
+    cursor: pointer; 
+}
+.curshelp {
+    cursor: help;
+}
+.cust-move {
+    cursor: move; 
+}
+/* ########## Object Visibility ########## */
+.objHidden {
+	display: none;
+}
+.objVisible {
+	display: block;
+}
+.objTranspOn {
+	opacity: 0.0;
+}
+.objTranspOff {
+	opacity: 1.0;
+}
+.vlOff {
+	color: #C0C0C0;
+}
+.screenBlocked {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    z-index: 9999;
+    background-color:black;
+    opacity: 0.5;
+    display: inline;
+}
+.screenUnBlocked {
+    position: fixed;
+    width: 0%;
+    height: 0%;
+    margin: 0;
+    z-index: 0;
+    display: none;
+}
+/* ########## Defining Media Extended ########## */
+/*
+@media (min-width: 1600px) {
+  .container {
+    width: 1580px;
+  }
+}
+*/

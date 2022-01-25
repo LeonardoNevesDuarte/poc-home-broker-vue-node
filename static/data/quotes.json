@@ -1,0 +1,229 @@
+{  
+    "FLRY3": {
+        "ticker": "FLRY3",
+        "logo": "FLRY.svg",
+        "current": 19.13,
+        "variation": 0,
+        "close": 19.13,
+        "open": 0,
+        "min": 0,
+        "max": 0
+    },
+    "AZUL4": {
+        "ticker": "AZUL4",
+        "logo": "AZUL.svg",
+        "current": 27.61,
+        "variation": 0,
+        "close": 27.61,
+        "open": 0,
+        "min": 0,
+        "max": 0},
+    "BBSE3": {
+        "ticker": "BBSE3",
+        "logo": "BBSE.svg",
+        "current": 27.28,
+        "variation": 0,
+        "close": 27.28,
+        "open": 0,
+        "min": 0,
+        "max": 0
+    },
+    "ELET3": {
+        "ticker": "ELET3",
+        "logo": "ELET.svg",
+        "current": 24.21,
+        "variation": 0,
+        "close": 24.21,
+        "open": 0,
+        "min": 0,
+        "max": 0
+    },
+    "VALE3": {
+        "ticker": "VALE3",
+        "logo": "VALE.svg",
+        "current": 84.91,
+        "variation": 0,
+        "close": 84.91,
+        "open": 0,
+        "min": 0,
+        "max": 0
+    },
+    "EGIE3": {
+        "ticker": "EGIE3",
+        "logo": "EGIE.svg",
+        "current": 27.07,
+        "variation": 0,
+        "close": 27.07,
+        "open": 0,
+        "min": 0,
+        "max": 0
+    },
+    "ABEV3": {
+        "ticker": "ABEV3",
+        "logo": "ABEV.svg",
+        "current": 21.75,
+        "variation": 0,
+        "close": 21.75,
+        "open": 0,
+        "min": 0,
+        "max": 0
+    },
+    "SUZB3": {
+        "ticker": "SUZB3",
+        "logo": "SUZB.svg",
+        "current": 59.59,
+        "variation": 0,
+        "close": 59.59,
+        "open": 0,
+        "min": 0,
+        "max": 0
+    },
+    "CSAN3": {
+        "ticker": "CSAN3",
+        "logo": "CSAN.svg",
+        "current": 21.98,
+        "variation": 0,
+        "close": 21.98,
+        "open": 0,
+        "min": 0,
+        "max": 0
+    },
+    "RAPT4": {
+        "ticker": "RAPT4",
+        "logo": "RAPT.svg",
+        "current": 11.35,
+        "variation": 0,
+        "close": 11.35,
+        "open": 0,
+        "min": 0,
+        "max": 0},
+    "ITSA4": {
+        "ticker": "ITSA4",
+        "logo": "ITSA.svg",
+        "current": 9.55,
+        "variation": 0,
+        "close": 9.55,
+        "open": 0,
+        "min": 0,
+        "max": 0
+    },
+    "CCRO3": {
+        "ticker": "CCRO3",
+        "logo": "CCRO.svg",
+        "current": 12.13,
+        "variation": 0,
+        "close": 12.13,
+        "open": 0,
+        "min": 0,
+        "max": 0
+    },
+    "BBDC4": {
+        "ticker": "BBDC4",
+        "logo": "BBDC.svg",
+        "current": 20.86,
+        "variation": 0,
+        "close": 20.86,
+        "open": 0,
+        "min": 0,
+        "max": 0
+    },
+    "PTBL3": {
+        "ticker": "PTBL3",
+        "logo": "PTBL.svg",
+        "current": 8.26,
+        "variation": 0,
+        "close": 8.26,
+        "open": 0,
+        "min": 0,
+        "max": 0},
+    "PETR4": {
+        "ticker": "PETR4",
+        "logo": "PETR.svg",
+        "current": 31.72,
+        "variation": 0,
+        "close": 31.72,
+        "open": 0,
+        "min": 0,
+        "max": 0
+    },
+    "MULT3": {
+        "ticker": "MULT3",
+        "logo": "MULT.svg",
+        "current": 19.94,
+        "variation": 0,
+        "close": 19.94,
+        "open": 0,
+        "min": 0,
+        "max": 0
+    },
+    "BPAC11": {
+        "ticker": "BPAC11",
+        "logo": "BPAC.svg",
+        "current": 21.17,
+        "variation": 0,
+        "close": 21.17,
+        "open": 0,
+        "min": 0,
+        "max": 0
+    },
+    "HAPV3": {
+        "ticker": "HAPV3",
+        "logo": "HAPV.svg",
+        "current": 11.82,
+        "variation": 0,
+        "close": 11.82,
+        "open": 0,
+        "min": 0,
+        "max": 0
+    },
+    "UGPA3": {
+        "ticker": "UGPA3",
+        "logo": "UGPA.svg",
+        "current": 13.61,
+        "variation": 0,
+        "close": 13.61,
+        "open": 0,
+        "min": 0,
+        "max": 0
+    },
+    "LREN3": {
+        "ticker": "LREN3",
+        "logo": "LREN.svg",
+        "current": 25.94,
+        "variation": 0,
+        "close": 25.94,
+        "open": 0,
+        "min": 0,
+        "max": 0
+    },
+    "BIDI11": {
+        "ticker": "BIDI11",
+        "logo": "BIDI.svg",
+        "current": 24.05,
+        "variation": 0,
+        "close": 24.05,
+        "open": 0,
+        "min": 0,
+        "max": 0
+    },
+    "NTCO3": {
+        "ticker": "NTCO3",
+        "logo": "NATU.svg",
+        "current": 22.62,
+        "variation": 0,
+        "close": 22.62,
+        "open": 0,
+        "min": 0,
+        "max": 0
+    },
+    "JBSS3": {
+        "ticker": "JBSS3",
+        "logo": "JBSS.svg",
+        "current": 36.62,
+        "variation": 0,
+        "close": 36.62,
+        "open": 0,
+        "min": 0,
+        "max": 0
+    }
+}
